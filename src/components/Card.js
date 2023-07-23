@@ -22,7 +22,7 @@ function Card({title,value,color,icon,isProgress}) {
                                             ariaValueNow:value, 
                                             ariaValueMin:"0",
                                             ariaValueMax:"100"
-                                          }}>
+                                          }}> 
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return <>
@@ -14,10 +15,18 @@ function Sidebar() {
 <hr className="sidebar-divider my-0"/>
 
 <li className="nav-item active">
-    <a className="nav-link" href="index.html">
+        <Link to ='/users' className="nav-link">
         <i className="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-        
+        <span>Dashboard</span>
+        </Link>
+</li> 
+
+
+<li className="nav-item">
+    <Link to ="/profile/:id" className="nav-link">
+        <i className="fas fa-fw fa-image"></i>
+        <span>profile</span>
+    </Link>
 </li>
 
 <hr className="sidebar-divider"/>
@@ -25,20 +34,14 @@ function Sidebar() {
     Interface
 </div>
 
-<li className="nav-item">
-    <a className="nav-link collapsed" href="javascript(void)" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i className="fas fa-fw fa-cog"></i>
-        <span>Components</span>
-    </a>
-</li>
+
 
 <li className="nav-item">
-    <a className="nav-link collapsed" href="javascript(void)" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
+        <Link to ='/create-user' className="nav-link">
         <i className="fas fa-fw fa-wrench"></i>
-        <span>Utilities</span>
-    </a>
+        <span>Add User</span>
+        </Link>
+    
 </li>
     </ul>
   </>
