@@ -51,7 +51,7 @@ function App() {
           <Route path='/create-user' element={<AddUser users={users} setUsers={setUsers}/>}/>
           <Route path='/edit-user/:id'element={<EditUser users={users} setUsers={setUsers}/>}/>
           <Route path="/profile/:id"element={<UserProfile ownusers={ownusers} setUsersdata={setUsersdata}/>}/>
-          <Route path="/edit-profile/:id"element={<EditProfile ownusers={ownusers} setUsersdata={setUsersdata}/>}/>/>}/>
+          <Route path="/edit-profile/:id"element={<EditProfile ownusers={ownusers} setUsersdata={setUsersdata}/>}/>
         </Routes>
       
 
