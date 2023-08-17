@@ -28,13 +28,17 @@ function Sidebar() {
         <span>profile</span>
     </Link>
 </li>
-
 <hr className="sidebar-divider"/>
 <div className="sidebar-heading">
     Interface
 </div>
 
-
+<li className="nav-item">
+    <Link to ="/details" className="nav-link">
+        <i className="fas fa-fw fa-image"></i>
+        <span>Details</span>
+    </Link>
+</li>
 
 <li className="nav-item">
         <Link to ='/create-user' className="nav-link">
