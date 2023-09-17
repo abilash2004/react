@@ -2,28 +2,32 @@ import React, { useContext, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from './context/UserContextComponent';
+import axios from 'axios';
+import Dashboard from './Dashboard';
 
 function AddUser() {
-  let context = useContext(UserContext)
-  let [Name,setName]=useState("")
+  let [Student,setStudent]=useState("")
   let [Email,setEmail]=useState("")
   let [Mobile,setMobile]=useState("")
-  let [Address,setAddress]=useState("")
+  let [Teacher,setTeacher]=useState("")
   let [Batch,setBatch]=useState("")
   let navigate = useNavigate()
 
-  let handlesave = ()=>{
-  let  newArray = [...context.users]
-  newArray.push({
-    Name,
-    Email,
-    Mobile,
-    Address,
-    Batch,
-  })
-  context.setUsers(newArray)
-  navigate('/users')
+  
+  let handlesave = async ()=>{
+    try {
+      let res = await axios.post(`${'https://647c2924c0bae2880ad06e11.mockapi.io/users'}`,{
+        Student,
+        Email,
+        Mobile,
+        Teacher,
+        Batch
+      })
+      if(res.status===201)
+        navigate('/users')
+    } catch (error) {
+      console.log(error)
+    }
   }
   return<div className='container'>
     <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -31,8 +35,8 @@ function AddUser() {
     </div>
       <Form>
       <Form.Group className="mb-3" >
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="name" placeholder="Enter Name" onChange={(e)=>setName(e.target.value)}/>
+        <Form.Label>Student</Form.Label>
+        <Form.Control type="name" placeholder="Student Name" onChange={(e)=>setStudent(e.target.value)}/>
       </Form.Group>
 
      <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -42,12 +46,12 @@ function AddUser() {
 
       <Form.Group className="mb-3" >
         <Form.Label>Mobile</Form.Label>
-        <Form.Control type="number" placeholder="Enter Mobile" onChange={(e)=>setAddress(e.target.value)}/>
+        <Form.Control type="number" placeholder="Enter Mobile" onChange={(e)=>setMobile(e.target.value)}/>
       </Form.Group>
 
       <Form.Group className="mb-3" >
-        <Form.Label>Address</Form.Label>
-        <Form.Control type="name" placeholder="Enter Address"onChange={(e)=>setMobile(e.target.value)} />
+        <Form.Label>Teacher</Form.Label>
+        <Form.Control type="name" placeholder="Teacher Name"onChange={(e)=>setTeacher(e.target.value)} />
       </Form.Group>
 
      <Form.Group className="mb-3" controlId="formBasicPassword">

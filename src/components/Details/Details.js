@@ -15,12 +15,12 @@ function Details() {
   return (
     <>
     <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">Details</h1>
+                <h1 className="h3 mb-0 text-gray-800">Hooks</h1>
     </div>
     <div className='section-navigator'>
 <ul>
-     <li className={currentPage===1?"activepage":""} onClick={()=>{setCurrentPage(1);navigate("accounts")}}>Accounts</li>
-     <li className={currentPage===2?"activepage":""} onClick={()=>{setCurrentPage(2);navigate("payments")}}>Payments</li>
+     <li className={currentPage===1?"activepage":""} onClick={()=>{setCurrentPage(1);navigate("useRef")}}>useRef</li>
+     <li className={currentPage===2?"activepage":""} onClick={()=>{setCurrentPage(2);navigate("useReducer")}}>useReducers</li>
      <li className={currentPage===3?"activepage":""} onClick={()=>{setCurrentPage(3);navigate("bill")}}>Details</li>
      <li className={currentPage===4?"activepage":""} onClick={()=>{setCurrentPage(4);navigate("profile")}}>Profile</li>
      <li className={currentPage===5?"activepage":""} onClick={()=>{setCurrentPage(5);navigate("password")}}>Change Password</li>

@@ -1,82 +1,129 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import { UserContext } from './context/UserContextComponent';
 
 function EditUser() {
+  const context = useContext(UserContext);
+  const params = useParams();
+  const navigate = useNavigate();
 
-  let context = useContext(UserContext)
-  let params = useParams()
-  let [name,setName] = useState()
-  let [email,setEmail] = useState()
-  let [mobile,setMobile] = useState()
-  let [address,setAddress] = useState()
-  let [batch,setBatch] = useState()
-  let navigate = useNavigate()
+  const [Student, setStudent] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Mobile, setMobile] = useState("");
+  const [Teacher, setTeacher] = useState("");
+  const [Batch, setBatch] = useState("");
 
-let handleSave = ()=>{
-  let newArray = [...context.users]
-  newArray.splice(params.id,1,{name,email,mobile,address,batch})
-  context.setUsers(newArray)
-  navigate('/dashboard')
+  const handleSave = async () => {
+    try {
+      const res = await axios.put(
+        `https://647c2924c0bae2880ad06e11.mockapi.io/users/${params.id}`,
+        {
+          Student,
+          Email,
+          Mobile,
+          Teacher,
+          Batch
+        }
+      );
+      if (res.status === 200) {
+        navigate('/users');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getUserData = async () => {
+    try {
+      const res = await axios.get(
+        `https://647c2924c0bae2880ad06e11.mockapi.io/users/${params.id}`
+      );
+      if (res.status === 200) {
+        const userData = res.data;
+        setStudent(userData.Student);
+        setEmail(userData.Email);
+        setMobile(userData.Mobile);
+        setTeacher(userData.Teacher);
+        setBatch(userData.Batch);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (params.id) {
+      getUserData();
+    } else {
+      navigate('/users');
+    }
+  }, [params.id, navigate]);
+
+  return (
+    <div className="container">
+      <div className="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 className="h3 mb-0 text-gray-800">Edit User</h1>
+      </div>
+      <Form>
+        <Form.Group className="mb-3">
+          <Form.Label>Student</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Student Name"
+            value={Student}
+            onChange={(e) => setStudent(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="Email"
+            placeholder="Enter Email"
+            value={Email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Mobile</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Mobile"
+            value={Mobile}
+            onChange={(e) => setMobile(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Teacher</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Teacher Name"
+            value={Teacher}
+            onChange={(e) => setTeacher(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Batch</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Batch"
+            value={Batch}
+            onChange={(e) => setBatch(e.target.value)}
+          />
+        </Form.Group>
+
+        <Button variant="primary" onClick={()=>handleSave()}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
 }
 
-useEffect(()=>{
-  if(params.id < context.users.length)
-  {
-    setName(context.users[params.id].name)
-    setEmail(context.users[params.id].email)
-    setMobile(context.users[params.id].mobile)
-    setAddress(context.users[params.id].address)
-    setBatch(context.users[params.id].batch)
-  }
-  else
-  {
-    alert("Invalid User Id")
-    navigate('/dashboard')
-  }
-},[params.id,context.users,navigate])
-
-//1. Without dependancy array useEffect(()=>{}) --> triggers everytime whena a state changes
-//2. With Empty Dependancy array useEffect(()=>{},[]) --> triggers only for the first time of component rendering
-//3. Eith Dependancy Array useEffect(()=>{},[name,email]) ->> trrigers only when name or email changes
-
-return <div className='container'>
-   <div className="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 className="h3 mb-0 text-gray-800">Edit User</h1>
-          </div>
-  <Form>
-  <Form.Group className="mb-3">
-      <Form.Label>Name</Form.Label>
-      <Form.Control type="text" placeholder="Enter Name" value={name} onChange={(e)=>setName(e.target.value)}/>
-    </Form.Group>
-
-    <Form.Group className="mb-3">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control type="email" placeholder="Enter Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-    </Form.Group>
-
-    <Form.Group className="mb-3">
-      <Form.Label>Mobile</Form.Label>
-      <Form.Control type="text" placeholder="Enter Mobile" value={mobile} onChange={(e)=>setMobile(e.target.value)}/>
-    </Form.Group>
-
-    <Form.Group className="mb-3">
-      <Form.Label>Address</Form.Label>
-      <Form.Control type="text" placeholder="Enter Address" value={address} onChange={(e)=>setAddress(e.target.value)}/>
-    </Form.Group>
-
-    <Form.Group className="mb-3">
-      <Form.Label>Batch</Form.Label>
-      <Form.Control type="text" placeholder="Enter Batch" value={batch} onChange={(e)=>setBatch(e.target.value)}/>
-    </Form.Group>
-   
-    <Button variant="primary" onClick={()=>handleSave()}>
-      Submit
-    </Button>
-  </Form>
-</div>
-}
-
-export default EditUser
+export default EditUser;

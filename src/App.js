@@ -44,10 +44,10 @@ function App() {
           <Route path="/profile/:id"element={<UserProfile ownusers={ownusers} setUsersdata={setUsersdata}/>}/>
           <Route path="/edit-profile/:id"element={<EditProfile/>}/>
           <Route path="*"element={<Navigate to="/users"/>}/>
-          <Route path="/details"element={<Details/>}>
-          <Route path='accounts' element={<Accounts/>}/>
+          <Route path="/hooks"element={<Details/>}>
+          <Route path='useRef' element={<Accounts/>}/>
             <Route path='bill' element={<Bill/>}/>
-            <Route path='password' element={<Password/>}/>
+            <Route path='useReducer' element={<Password/>}/>
             <Route path='payments' element={<Payments/>}/>
             <Route path='profile' element={<Profile/>}/>
           </Route>

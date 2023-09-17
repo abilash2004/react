@@ -3,24 +3,24 @@ export const UserContext = React.createContext()
 function UserContextComponent({children}) {
 let [users,setUsers] =useState([
     {
-      Name:"abilash",
+      Student:"abilash",
       Email:"ksrabilash@gmail.com",
-      Address:"2324, flot 24, park avanue 1st street ,uk",
       Mobile:"9999999999",
+      Teacher:"naga",
       Batch:"B46WET"
     },
     {
-      Name:"abilashSR",
+      Student:"abilashSR",
       Email:"abilash2004@gmail.com",
-      Address:"2324, flot 24, park avanue 1st street ,usa",
       Mobile:"4564734355",
+      Teacher:"naga",
       Batch:"B46WET"
     },
     {
-      Name:"amarnath",
+      Student:"amarnath",
       Email:"amarnath24@gmail.com",
-      Address:"2324, flot 24, park avanue 1st street ,usa",
       Mobile:"4564734755",
+      Teacher:"naga",
       Batch:"B46WET"
     }])
   return <>

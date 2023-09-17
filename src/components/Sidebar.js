@@ -34,7 +34,7 @@ function Sidebar() {
 </div>
 
 <li className="nav-item">
-    <Link to ="/details" className="nav-link">
+    <Link to ="/hooks" className="nav-link">
         <i className="fas fa-fw fa-image"></i>
         <span>Details</span>
     </Link>
