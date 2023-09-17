@@ -1,13 +1,15 @@
-import React, { useReducer,useState } from 'react'
+import React, { useReducer } from 'react'
 import { Button } from 'react-bootstrap'
 
 function reducer ( state,payload){
 switch(payload.action)
 
 {
-  case "INC" : return {...state, count:state.count+1}
+  case "INC" : return {...state, count:state.count+1};
 
-  case "DCE" : return {...state, count:state.count-1}
+  case "DCE" : return {...state, count:state.count-1};
+  default:
+      return state; 
 }
 
 
@@ -31,4 +33,4 @@ function Password() {
 </>
 }
 
-export default Password
+export default Password;

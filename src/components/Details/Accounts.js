@@ -2,8 +2,8 @@ import React, { useEffect, useState,useRef } from 'react'
 import { Button } from 'react-bootstrap'
 
 function Accounts() {
-  let [count,setCount] = useState(0)
-  let [name,setName] = useState ("")
+  let [setCount] = useState(0)
+  let [setName] = useState ("")
   let countRef = useRef(0) 
   let inputuseRef1 = useRef()
   let inputuseRef2 = useRef()

@@ -59,10 +59,6 @@ function UserProfile({ownusers,setUsersdata}) {
       
       </tbody>
     </Table>
-    {/* <div>
-    <Button variant="primary" onClick={
-                ()=>{navigate(`/edit-profile/${i}`)}}  >Edit</Button>
-    </div> */}
   </div>
   </div>
   )

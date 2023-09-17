@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { Dashboardcontext } from './context/Dashboardcontextcomponent';
 import axios from 'axios';
-import AddUser from './AddUser';
+
 function Dashboard() { 
   const dashboard = useContext(Dashboardcontext);
   const navigate = useNavigate();
@@ -42,11 +42,12 @@ setUsers(res.data)
       <div className="container-fluid">
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 className="h3 mb-0 text-gray-800">List Users</h1>
-          <a href="javascript:void(0)" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i className="fas fa-download fa-sm text-white-50"></i> Generate Report
-          </a>
+          <button
+  className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+  onClick={() => {}}>
+  <i className="fas fa-download fa-sm text-white-50"></i> Generate Report
+</button>
         </div>
-
         <div className="row">
           {dashboard.data.map((e, i) => (
             <Card
